@@ -17,3 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::resource('kotas', App\Http\Controllers\API\KotaAPIController::class);
+
+Route::resource('jams', App\Http\Controllers\API\JamAPIController::class);
+
+Route::resource('levels', App\Http\Controllers\API\LevelAPIController::class);
+
+Route::resource('sektors', App\Http\Controllers\API\SektorAPIController::class);
+
+Route::resource('tmp_images', App\Http\Controllers\API\tmpImageAPIController::class);
+
+Route::resource('foto_recognitions', App\Http\Controllers\API\fotoRecognitionsAPIController::class);
+
+Route::resource('karyawans', App\Http\Controllers\API\KaryawanAPIController::class);

@@ -24,3 +24,20 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+Route::resource('kotas', App\Http\Controllers\KotaController::class);
+
+Route::resource('jams', App\Http\Controllers\JamController::class);
+
+Route::resource('levels', App\Http\Controllers\LevelController::class);
+
+Route::resource('sektors', App\Http\Controllers\SektorController::class);
+
+Route::resource('tmpImages', App\Http\Controllers\tmpImageController::class);
+
+Route::resource('fotoRecognitions', App\Http\Controllers\fotoRecognitionsController::class);
+
+Route::resource('karyawans', App\Http\Controllers\KaryawanController::class);
