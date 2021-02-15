@@ -34,3 +34,5 @@ Route::resource('foto_recognitions', App\Http\Controllers\API\fotoRecognitionsAP
 Route::resource('karyawans', App\Http\Controllers\API\KaryawanAPIController::class);
 
 Route::resource('name_positions', App\Http\Controllers\API\NamePositionAPIController::class);
+
+Route::resource('absensis', App\Http\Controllers\API\AbsensiAPIController::class);

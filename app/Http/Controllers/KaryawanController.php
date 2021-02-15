@@ -13,6 +13,9 @@ use App\Models\namePosition;
 use App\Models\Sektor;
 use App\Models\Kota;
 use App\Models\User;
+use App\Models\Karyawan;
+use App\Exports\karyawanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KaryawanController extends AppBaseController
 {
@@ -33,7 +36,13 @@ class KaryawanController extends AppBaseController
      */
     public function index(Request $request)
     {
+        $input= $request->all();
         $karyawans = $this->karyawanRepository->all();
+        if($request->nik){
+            $nik = $input['nik'];
+
+            $karyawans = Karyawan::where('nik', $nik)->paginate(20);
+        }
 
         return view('karyawans.index')
             ->with('karyawans', $karyawans);
@@ -176,5 +185,10 @@ class KaryawanController extends AppBaseController
         Flash::success('Karyawan deleted successfully.');
 
         return redirect(route('karyawans.index'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new karyawanExport, 'karyawan.xlsx');
     }
 }

@@ -41,5 +41,10 @@ Route::resource('tmpImages', App\Http\Controllers\tmpImageController::class);
 Route::resource('fotoRecognitions', App\Http\Controllers\fotoRecognitionsController::class);
 
 Route::resource('karyawans', App\Http\Controllers\KaryawanController::class);
+Route::get('/exportkaryawan', 'App\Http\Controllers\KaryawanController@export')->name('karyawans.export');
 
 Route::resource('namePositions', App\Http\Controllers\NamePositionController::class);
+
+
+Route::resource('absensis', App\Http\Controllers\AbsensiController::class);
+Route::get('/exportkaryawan', 'App\Http\Controllers\AbsensiController@export')->name('absensis.export');

@@ -63,3 +63,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('absensis.index') }}"
+       class="nav-link {{ Request::is('absensis*') ? 'active' : '' }}">
+        <p>Absensis</p>
+    </a>
+</li>
+
+

@@ -19,7 +19,7 @@
 <!-- Jenis Kelamin Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('jenis_kelamin', 'Jenis Kelamin:') !!}
-    {!! Form::select('jenis_kelamin', ['laki-laki', 'perempuan'],null, ['class' => 'form-control']) !!}
+    {!! Form::select('jenis_kelamin', ['laki-laki'=>'Pria','perempuan'=>'Perempuan'],null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Name Positions Id Field -->
