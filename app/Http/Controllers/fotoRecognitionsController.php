@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\User;
 
 class fotoRecognitionsController extends AppBaseController
 {
@@ -42,7 +43,11 @@ class fotoRecognitionsController extends AppBaseController
      */
     public function create()
     {
-        return view('foto_recognitions.create');
+        $User = User::pluck('name','id');
+
+        return view('foto_recognitions.create', compact(
+            'User'
+        ));
     }
 
     /**
@@ -54,9 +59,19 @@ class fotoRecognitionsController extends AppBaseController
      */
     public function store(CreatefotoRecognitionsRequest $request)
     {
-        $input = $request->all();
+        $input = $request->except('foto');
+        $date = date('m-m-y');
 
-        $fotoRecognitions = $this->fotoRecognitionsRepository->create($input);
+        $fotoRecognition = $this->fotoRecognitionsRepository->create($input);
+/*         dd($request); */
+            if($request->hasFile('foto')){
+                $foto = $request->file('foto');
+                $filename = $date. '.' .$foto->getClientOriginalExtension();
+                $savefoto = $foto->storeAs('foto', $filename, 'public');
+    /*             dd($savefoto);
+     */         $fotoRecognition->foto=url('storage/'.$savefoto);
+                $fotoRecognition->save();
+            }
 
         Flash::success('Foto Recognitions saved successfully.');
 

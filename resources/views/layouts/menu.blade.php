@@ -55,3 +55,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('namePositions.index') }}"
+       class="nav-link {{ Request::is('namePositions*') ? 'active' : '' }}">
+        <p>Name Positions</p>
+    </a>
+</li>
+
+

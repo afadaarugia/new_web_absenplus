@@ -75,7 +75,7 @@ class Karyawan extends Model
      * @var array
      */
     public static $rules = [
-        'foto' => 'nullable|string|max:255',
+        'foto' => 'nullable|mimetypes:image/jpeg, image/jpg, image/png|max:255',
         'nama' => 'nullable|string|max:45',
         'alamat' => 'nullable|string',
         'jenis_kelamin' => 'nullable|string',

@@ -41,3 +41,5 @@ Route::resource('tmpImages', App\Http\Controllers\tmpImageController::class);
 Route::resource('fotoRecognitions', App\Http\Controllers\fotoRecognitionsController::class);
 
 Route::resource('karyawans', App\Http\Controllers\KaryawanController::class);
+
+Route::resource('namePositions', App\Http\Controllers\NamePositionController::class);

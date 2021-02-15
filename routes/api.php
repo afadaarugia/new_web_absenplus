@@ -32,3 +32,5 @@ Route::resource('tmp_images', App\Http\Controllers\API\tmpImageAPIController::cl
 Route::resource('foto_recognitions', App\Http\Controllers\API\fotoRecognitionsAPIController::class);
 
 Route::resource('karyawans', App\Http\Controllers\API\KaryawanAPIController::class);
+
+Route::resource('name_positions', App\Http\Controllers\API\NamePositionAPIController::class);

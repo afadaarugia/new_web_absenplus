@@ -7,21 +7,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * Class fotoRecognitions
+ * Class NamePosition
  * @package App\Models
- * @version February 14, 2021, 11:10 am UTC
+ * @version February 14, 2021, 1:09 pm UTC
  *
- * @property \App\Models\User $users
- * @property string $foto
- * @property integer $users_id
+ * @property \App\Models\Level $levels
+ * @property \Illuminate\Database\Eloquent\Collection $karyawans
+ * @property string $nama
+ * @property integer $levels_id
  */
-class fotoRecognitions extends Model
+class NamePosition extends Model
 {
     use SoftDeletes;
 
     use HasFactory;
 
-    public $table = 'foto_recognitions';
+    public $table = 'name_positions';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -32,8 +33,8 @@ class fotoRecognitions extends Model
 
 
     public $fillable = [
-        'foto',
-        'users_id'
+        'nama',
+        'levels_id'
     ];
 
     /**
@@ -43,8 +44,8 @@ class fotoRecognitions extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'foto' => 'string',
-        'users_id' => 'integer'
+        'nama' => 'string',
+        'levels_id' => 'integer'
     ];
 
     /**
@@ -53,18 +54,26 @@ class fotoRecognitions extends Model
      * @var array
      */
     public static $rules = [
-        'foto' => 'nullable|mimetypes:image/jpeg,image/jpg,image/png|max:5012',
+        'nama' => 'nullable|string|max:45',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable',
-        'users_id' => 'required'
+        'levels_id' => 'required|integer'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function users()
+    public function levels()
     {
-        return $this->belongsTo(\App\Models\User::class, 'users_id');
+        return $this->belongsTo(\App\Models\Level::class, 'levels_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function karyawans()
+    {
+        return $this->hasMany(\App\Models\Karyawan::class, 'name_positions_id');
     }
 }

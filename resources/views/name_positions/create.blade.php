@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create Foto Recognitions</h1>
+                    <h1>Create Name Position</h1>
                 </div>
             </div>
         </div>
@@ -17,19 +17,19 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'fotoRecognitions.store', 'files' => true]) !!}
+            {!! Form::open(['route' => 'namePositions.store']) !!}
 
             <div class="card-body">
 
                 <div class="row">
-                    @include('foto_recognitions.fields')
+                    @include('name_positions.fields')
                 </div>
 
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('fotoRecognitions.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('namePositions.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
             {!! Form::close() !!}

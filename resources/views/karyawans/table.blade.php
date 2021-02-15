@@ -16,7 +16,7 @@
         <tbody>
         @foreach($karyawans as $karyawan)
             <tr>
-                <td>{{ $karyawan->foto }}</td>
+                <td><img src= "{{ $karyawan->foto }}" height="70px" width="70px"></td>
             <td>{{ $karyawan->nama }}</td>
             <td>{{ $karyawan->alamat }}</td>
             <td>{{ $karyawan->jenis_kelamin }}</td>

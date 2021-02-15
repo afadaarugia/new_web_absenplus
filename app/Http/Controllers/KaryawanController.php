@@ -9,6 +9,10 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\namePosition;
+use App\Models\Sektor;
+use App\Models\Kota;
+use App\Models\User;
 
 class KaryawanController extends AppBaseController
 {
@@ -42,7 +46,17 @@ class KaryawanController extends AppBaseController
      */
     public function create()
     {
-        return view('karyawans.create');
+        $namePosition = namePosition::pluck('nama','id');
+        $Sektor = Sektor::pluck('nama','id');
+        $Kota = Kota::pluck('nama','id');
+        $User = User::pluck('name','id');
+
+        return view('karyawans.create', compact(
+            'namePosition',
+            'Sektor',
+            'Kota',
+            'User'
+        ));
     }
 
     /**
@@ -54,9 +68,19 @@ class KaryawanController extends AppBaseController
      */
     public function store(CreateKaryawanRequest $request)
     {
-        $input = $request->all();
+        $input = $request->except('foto');
+        $date = date('d-m-y');
 
         $karyawan = $this->karyawanRepository->create($input);
+
+        if($request->hasFile('foto')){
+            $foto = $request->file('foto');
+            $fileName = $date.'.'.$foto->getClientOriginalExtension();
+            $saveFoto = $foto->storeAs('foto', $fileName, 'public');
+
+            $karyawan->foto = url('storage/' .$saveFoto);
+            $karyawan->save();
+        }
 
         Flash::success('Karyawan saved successfully.');
 
